@@ -51,7 +51,7 @@ describe BillPicker do
     end
 
     it 'returns 1 R$ 50 and 1 R$ 20 bills for 90' do
-      pick_bills(90).must_equal 'Entregar 1 nota de R$ 50,00 2 nota de R$ 20,00.'
+      pick_bills(90).must_equal 'Entregar 1 nota de R$ 50,00 e 2 notas de R$ 20,00.'
     end
 
     it 'returns 1 R$ 100, 1 R$ 20 and 1 R$ 10 bills for 130' do
@@ -63,17 +63,17 @@ describe BillPicker do
     end
 
     it 'returns 2 R$ 100, 1 R$ 50 and 2 R$ 20 bills for 290' do
-      pick_bills(290).must_equal 'Entregar 2 notas de R$ 100,00 1 nota de R$ 50,00 2 R$ 20.'
+      pick_bills(290).must_equal 'Entregar 2 notas de R$ 100,00 1 nota de R$ 50,00 e 2 notas de R$ 20,00.'
     end
   end
 
   describe "when value can't be returned by available bills" do
-    it 'returns error message for 35' do
-      pick_bills(35).must_equal 'Erro, impossível pagar nas notas disponíves R$ 5,00'
+    it 'returns error message for 37' do
+      pick_bills(35).must_equal 'Erro, impossível pagar nas notas disponíves R$ 7,00'
     end
 
     it 'returns error message for 42.67' do
-      pick_bills(42.67).must_equal 'Erro, impossível pagar nas notas disponíves R$ 5,00'
+      pick_bills(42.67).must_equal 'Erro, impossível retirar centavos'
     end
   end
 end
