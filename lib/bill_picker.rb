@@ -1,9 +1,11 @@
 module BillPicker
   require 'active_support/inflector'
 
-  def pick_bills(money)
-    return 'Erro, impossível retirar um valor negativo' if money < 0
-    return 'Erro, impossível retirar centavos' if money.to_f != money.to_i
+  def pick_bills(money_string)
+    return 'Erro, impossível retirar centavos' if money_string.to_f != money_string.to_i
+
+    money = money_string.to_i
+    return 'Erro, impossível retirar um valor negativo' if money.negative?
 
     hundred_bills, rest = money.divmod(100)
     fifty_bills, rest = rest.divmod(50)
