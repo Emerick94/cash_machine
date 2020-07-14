@@ -2,8 +2,6 @@ require 'minitest/autorun'
 require 'byebug'
 require 'bill_picker.rb'
 
-# ruby -Ilib test/test_bill_picker.rb
-
 describe BillPicker do
   before(:all) do
     extend BillPicker
@@ -99,13 +97,16 @@ describe BillPicker do
     end
 
     describe 'substrings around the value' do
-      it 'works with R$' do
+      it 'works with R$ and empty space' do
         _(normalize_money_string('R$ 42,30')).must_equal nil
+      end
+
+      it 'works with R$ and no empty space' do
+        _(normalize_money_string('R$42,30')).must_equal nil
       end
 
       it 'works without R$' do
         _(normalize_money_string('42,30')).must_equal nil
-        _(pick_bills(42.67)).must_equal 'Erro, impossível retirar centavos'
       end
 
       it "doesn't work with another string before" do
