@@ -26,7 +26,7 @@ module BillPicker
   end
 
   def normalize_money_string(money_string)
-    money_string.sub(/R$*(\d+)[\,\.]?(\d*)/x, '\1.\2')
+    money_string.sub(/^\s*R?\$?\s*(\d+)[\,\.]?(\d*)\s*$/x, '\1.\2')
   end
 
   private
