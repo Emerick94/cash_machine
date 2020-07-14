@@ -23,6 +23,10 @@ module BillPicker
     response == 'Entregar ' ? response << '0 notas.' : response.strip << '.'
   end
 
+  def normalize_money_string(money_string)
+    money_string.sub(/R$*(\d+)[\,\.]?(\d*)/x, '\1.\2')
+  end
+
   private
 
   # this is a simplification of rails pluralize()
@@ -39,13 +43,9 @@ module BillPicker
   end
 
   def add_and(response, bill_counts)
-    kind_counter = 0
-    bill_counts.each do |bill_count|
-      kind_counter += 1 if bill_count > 0
-      break if kind_counter > 1
-    end
+    bill_counts.select! { |bill_count| bill_count.positive? }
 
-    return response if kind_counter <= 1
+    return response if bill_counts.size <= 1
 
     last_count = bill_counts.reverse.find { |count| count > 0 }
     response.sub(/.*\K(#{last_count} nota)/, 'e \1')
