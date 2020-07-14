@@ -4,7 +4,7 @@ extend BillPicker
 money = ARGV[0]
 
 if money.nil?
-  puts 'por favor insira a quantidade de dinheiro desejada.'
+  puts 'Por favor, insira a quantidade de dinheiro desejada.'
   money = gets.chomp
 end
 
