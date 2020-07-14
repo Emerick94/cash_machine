@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require 'byebug'
 require 'bill_picker.rb'
 
 describe BillPicker do
