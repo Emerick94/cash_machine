@@ -1,5 +1,6 @@
-# Cash_machine
-a simple application that returns the least amount of bills for the required money
+# Cash Machine
+
+A simple application that returns the least amount of bills for the required money
 
 ## Prerequisites
 
@@ -8,7 +9,7 @@ a simple application that returns the least amount of bills for the required mon
 
 ### Installing
 
-install gems
+Install gems
 
 ```shell
 $ bundle install
@@ -25,7 +26,7 @@ $ ruby cash_machine.rb 'R$ 530,00'
 Entregar 5 notas de R$ 100,00 1 nota de R$ 20,00 e 1 nota de R$ 10,00.
 ```
 
-You can also just run the script without the argument, and then put the required money
+You can also just run the script without the argument, and then put the required money after being required to:
 
 ```shell
 $ ruby cash_machine.rb
