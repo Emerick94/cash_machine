@@ -84,37 +84,37 @@ describe BillPicker do
   describe '#normalize_money_string' do
     describe 'cleaning decimal part' do
       it 'works without decimal' do
-        _(normalize_money_string('42')).must_equal nil
+        _(normalize_money_string('42')).must_equal '42.'
       end
 
       it "works with decimal and ','" do
-        _(normalize_money_string('42,34')).must_equal nil
+        _(normalize_money_string('42,34')).must_equal '42.34'
       end
 
       it "works with decimal and '.'" do
-        _(normalize_money_string('42.34')).must_equal nil
+        _(normalize_money_string('42.34')).must_equal '42.34'
       end
     end
 
     describe 'substrings around the value' do
       it 'works with R$ and empty space' do
-        _(normalize_money_string('R$ 42,30')).must_equal nil
+        _(normalize_money_string('R$ 42,30')).must_equal '42.30'
       end
 
       it 'works with R$ and no empty space' do
-        _(normalize_money_string('R$42,30')).must_equal nil
+        _(normalize_money_string('R$42,30')).must_equal '42.30'
       end
 
       it 'works without R$' do
-        _(normalize_money_string('42,30')).must_equal nil
+        _(normalize_money_string('42,30')).must_equal '42.30'
       end
 
       it "doesn't work with another string before" do
-        _(normalize_money_string('reais: 42,34')).must_equal nil
+        _(normalize_money_string('reais: 42,30')).must_equal 'reais: 42,30'
       end
 
       it "doesn't work with another string after" do
-        _(normalize_money_string('42,34 reais')).must_equal nil
+        _(normalize_money_string('42,30 reais')).must_equal '42,30 reais'
       end
     end
   end
